@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+
+	<changeSet id="petshop-dml_1.0_01"
+		author="guilherme.baccarin">
+		<preConditions onFail="MARK_RAN" onError="MARK_RAN">
+
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM
+				petshop.raca
+			</sqlCheck>
+
+		</preConditions>
+		<comment> Inserindo registros dos raça </comment>
+		<sql>
+			INSERT INTO petshop.raca (nome)
+			VALUES
+			('Labrador Retriever'),
+			('Golden Retriever'),
+			('Bulldog Inglês'),
+			('Bulldog Francês'),
+			('Poodle'),
+			('Beagle'),
+			('Boxer'),
+			('Rottweiler'),
+			('Dobermann'),
+			('Dachshund'),
+			('Basset Hound'),
+			('Chihuahua'),
+			('Shih Tzu'),
+			('Yorkshire Terrier'),
+			('Pomeranian'),
+			('Husky Siberiano'),
+			('Bulldog Americano'),
+			('Dalmata'),
+			('Pastor Alemão'),
+			('Pug'),
+			('Bull Terrier'),
+			('Cocker Spaniel'),
+			('Shar Pei'),
+			('Akita'),
+			('Chow Chow'),
+			('Border Collie'),
+			('Bichon Frisé'),
+			('Schnauzer'),
+			('Setter Irlandês'),
+			('Dogue Alemão'),
+			('Dogo Argentino'),
+			('Shiba Inu'),
+			('Mastiff'),
+			('Papillon'),
+			('Spitz Alemão'),
+			('Staffordshire Bull Terrier');
+
+		</sql>
+		<rollback>DELETE FROM petshop.raca </rollback>
+	</changeSet>
+
+
+</databaseChangeLog>

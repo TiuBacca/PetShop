@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="petshop-dml_1.0_01"
+		author="guilherme.baccarin">
+		<preConditions onFail="MARK_RAN" onError="MARK_RAN">
+
+			<sqlCheck expectedResult="0">
+				SELECT count(*)
+				FROM pg_database WHERE datistemplate = false and datname like 'petshop';
+			</sqlCheck>
+
+		</preConditions>
+		<comment> Criando database petshop </comment>
+		<sql>
+			create database petshop;
+
+		</sql>
+		<rollback> DROP database petshop </rollback>
+	</changeSet>
+
+
+	<changeSet id="petshop-dml_1.0_02"
+		author="guilherme.baccarin">
+		<preConditions onFail="MARK_RAN" onError="MARK_RAN">
+
+			<sqlCheck expectedResult="0">
+				SELECT count(*)
+				FROM information_schema.schemata
+				WHERE schema_name = 'petshop';
+			</sqlCheck>
+
+		</preConditions>
+		<comment> Criando schema petshop </comment>
+		<sql>
+			create schema petshop;
+
+		</sql>
+		<rollback> DROP schema petshop </rollback>
+	</changeSet>
+	
+</databaseChangeLog>
