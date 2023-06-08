@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.util.Objects;
 import java.util.Random;
 
 import org.springframework.context.annotation.Configuration;
@@ -67,6 +68,9 @@ public class Util {
 		return this.em;
 	}
 
+	public static Boolean validaDiferenteNullAndDiferenteZero(Long id) {		
+		return Objects.nonNull(id) && id != 0;
+	}
 
 
 }

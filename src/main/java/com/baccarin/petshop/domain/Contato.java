@@ -43,5 +43,5 @@ public class Contato {
 
 	@Column(name = "valor", nullable = false, updatable = true)
 	private BigDecimal valor;
-
+	
 }
