@@ -16,7 +16,6 @@ import com.baccarin.petshop.service.PetService;
 import com.baccarin.petshop.vo.filtro.PetFiltro;
 import com.baccarin.petshop.vo.request.ClienteRequest;
 import com.baccarin.petshop.vo.request.PetRequest;
-import com.baccarin.petshop.vo.response.ContatoResponse;
 import com.baccarin.petshop.vo.response.PetReponse;
 import com.baccarin.petshop.vo.response.RacaResponse;
 
@@ -91,12 +90,8 @@ public class PetServiceImpl implements PetService {
 
 	@Override
 	public void excluirPet(PetRequest request) throws Exception {
-		if (Util.validaDiferenteNullAndDiferenteZero(request.getId())) {
-			petRepository.findById(request.getId()).orElseThrow(() -> new RegistroNaoEncontradoException(
-					"Pet equivalente ao código informado não foi encontrado."));
-		}
-
-		throw new RegistroIncompletoException("Para remover o pet, é necessário informar o seu código.");
+		validaExcluirPet(request);
+		petRepository.deleteById(request.getId());
 	}
 
 	private void validaSalvarPet(PetRequest request) throws Exception {
@@ -124,10 +119,10 @@ public class PetServiceImpl implements PetService {
 		if (Util.validaDiferenteNullAndDiferenteZero(request.getId())) {
 			petRepository.findById(request.getId()).orElseThrow(() -> new RegistroNaoEncontradoException(
 					"Pet equivalente ao código informado não foi encontrado."));
+			return;
 		}
 
 		throw new RegistroIncompletoException("Para remover o pet, é necessário informar o seu código.");
-	}
 	}
 
 }
