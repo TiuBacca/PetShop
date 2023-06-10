@@ -7,4 +7,7 @@ import lombok.Builder;
 @Builder
 public class RacaResponse extends ObjetoGenericoResponse {
 
+	public RacaResponse(Long id, String descricao) {
+		super(id,descricao);
+	}
 }

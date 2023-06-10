@@ -18,4 +18,11 @@ public class ClienteRequest {
 	private String nome;
 	private String cpf;
 	private LocalDateTime dataCadastro;
+	
+	public ClienteRequest(Long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+	
+	
 }

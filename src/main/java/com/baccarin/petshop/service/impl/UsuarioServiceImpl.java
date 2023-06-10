@@ -33,6 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void salvarUsuario(UsuarioRequest request) throws Exception {
 		validaSalvarUsuario(request);
+		usuarioRepository.save(UsuarioRequest.converteToDomain(request));
 	}
 
 	@Override

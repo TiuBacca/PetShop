@@ -14,7 +14,6 @@ import com.baccarin.petshop.exceptions.RegistroIncompletoException;
 import com.baccarin.petshop.service.UsuarioService;
 import com.baccarin.petshop.vo.filtro.UsuarioFiltro;
 import com.baccarin.petshop.vo.request.UsuarioRequest;
-import com.baccarin.petshop.vo.response.ClienteResponse;
 import com.baccarin.petshop.vo.response.ObjetoGenericoResponse;
 import com.baccarin.petshop.vo.response.UsuarioResponse;
 
