@@ -20,16 +20,20 @@ import com.baccarin.petshop.vo.request.PetRequest;
 import com.baccarin.petshop.vo.response.ObjetoGenericoResponse;
 import com.baccarin.petshop.vo.response.PetReponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("pet")
 @RequiredArgsConstructor
+@Api(tags = "Pet")
 public class PetResource {
 
 	private final PetService petService;
 
 	@PostMapping(path = "buscaLista/byFiltro")
+	@ApiOperation("Buscar lista de pets")
 	public ResponseEntity<List<PetReponse>> buscaListaPet(@RequestBody PetFiltro filtro) throws Exception {
 		List<PetReponse> pets = petService.buscaListaPet(filtro);
 		if (Objects.nonNull(pets) && !pets.isEmpty()) {
@@ -39,6 +43,7 @@ public class PetResource {
 	}
 
 	@PostMapping(path = "salvar")
+	@ApiOperation("Salvar pet")
 	public ResponseEntity<ObjetoGenericoResponse> salvarPet(@RequestBody PetRequest request) {
 		try {
 			petService.salvarPet(request);
@@ -54,6 +59,7 @@ public class PetResource {
 	}
 
 	@PostMapping(path = "excluir")
+	@ApiOperation("Excluir pet")
 	public ResponseEntity<ObjetoGenericoResponse> excluirPet(@RequestBody PetRequest request) {
 		try {
 			petService.excluirPet(request);

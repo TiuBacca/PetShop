@@ -17,16 +17,20 @@ import com.baccarin.petshop.vo.request.ClienteRequest;
 import com.baccarin.petshop.vo.response.ClienteResponse;
 import com.baccarin.petshop.vo.response.ObjetoGenericoResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("cliente")
 @RequiredArgsConstructor
+@Api(tags = "Cliente")
 public class ClienteResource {
 
 	private final ClienteService clienteService;
 
 	@PostMapping(path = "buscaLista/byFiltro")
+	@ApiOperation("Buscar lista de clientes")
 	public ResponseEntity<List<ClienteResponse>> buscaListaClientes(@RequestBody ClienteFiltro filtro)
 			throws Exception {
 		List<ClienteResponse> clientes = clienteService.buscaListaClientes(filtro);
@@ -37,6 +41,7 @@ public class ClienteResource {
 	}
 
 	@PostMapping(path = "salvar")
+	@ApiOperation("Salvar cliente")
 	public ResponseEntity<ObjetoGenericoResponse> salvarCliente(@RequestBody ClienteRequest request) {
 		try {
 			clienteService.salvarCliente(request);
@@ -52,6 +57,7 @@ public class ClienteResource {
 	}
 	
 	@PostMapping(path = "excluir")
+	@ApiOperation("Excluir cliente")
 	public ResponseEntity<ObjetoGenericoResponse> excluirCliente(@RequestBody ClienteRequest request) {
 		try {
 			clienteService.excluirCliente(request);

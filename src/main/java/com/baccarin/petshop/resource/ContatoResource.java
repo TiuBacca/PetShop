@@ -20,17 +20,21 @@ import com.baccarin.petshop.vo.response.ClienteResponse;
 import com.baccarin.petshop.vo.response.ContatoResponse;
 import com.baccarin.petshop.vo.response.ObjetoGenericoResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("contato")
 @RequiredArgsConstructor
+@Api(tags = "Contato")
 public class ContatoResource {
 
 	private ContatoService contatoService;
 	
 	
 	@PostMapping(path = "buscaLista/byFiltro")
+	@ApiOperation("Buscar lista de contatos")
 	public ResponseEntity<List<ContatoResponse>> buscaListaContatos(@RequestBody ContatoFiltro filtro)
 			throws Exception {
 		List<ContatoResponse> contatos = contatoService.buscaListaContatos(filtro);
@@ -41,6 +45,7 @@ public class ContatoResource {
 	}
 	
 	@PostMapping(path = "salvar")
+	@ApiOperation("Salvar contato")
 	public ResponseEntity<ObjetoGenericoResponse> salvarContato(@RequestBody ContatoRequest request) {
 		try {
 			contatoService.salvarContato(request);
@@ -56,6 +61,7 @@ public class ContatoResource {
 	}
 	
 	@PostMapping(path = "excluir")
+	@ApiOperation("Excluir contato")
 	public ResponseEntity<ObjetoGenericoResponse> excluirContato(@RequestBody ContatoRequest request) {
 		try {
 			contatoService.excluirContato(request);

@@ -18,17 +18,20 @@ import com.baccarin.petshop.vo.request.EnderecoRequest;
 import com.baccarin.petshop.vo.response.EnderecoResponse;
 import com.baccarin.petshop.vo.response.ObjetoGenericoResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("endereco")
 @RequiredArgsConstructor
+@Api(tags = "Endereço")
 public class EnderecoResource {
 
 	private final EnderecoService enderecoService;
-	
-	
+
 	@PostMapping(path = "buscaLista/byFiltro")
+	@ApiOperation("Buscar lista de endereços")
 	public ResponseEntity<List<EnderecoResponse>> buscaListaEnderecos(@RequestBody EnderecoFiltro filtro)
 			throws Exception {
 		List<EnderecoResponse> enderecos = enderecoService.buscaListaEnderecos(filtro);
@@ -37,8 +40,9 @@ public class EnderecoResource {
 		}
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@PostMapping(path = "salvar")
+	@ApiOperation("Salvar endereço")
 	public ResponseEntity<ObjetoGenericoResponse> salvarEndereco(@RequestBody EnderecoRequest request) {
 		try {
 			enderecoService.salvarEndereco(request);
@@ -52,13 +56,14 @@ public class EnderecoResource {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@PostMapping(path = "excluir")
+	@ApiOperation("Excluir endereço")
 	public ResponseEntity<ObjetoGenericoResponse> excluirEndereco(@RequestBody EnderecoRequest request) {
 		try {
 			enderecoService.excluirEndereco(request);
-			return new ResponseEntity<ObjetoGenericoResponse>(new ObjetoGenericoResponse("Endereço excluido com sucesso."),
-					HttpStatus.OK);
+			return new ResponseEntity<ObjetoGenericoResponse>(
+					new ObjetoGenericoResponse("Endereço excluido com sucesso."), HttpStatus.OK);
 		} catch (RegistroIncompletoException | RegistroNaoEncontradoException e) {
 			return new ResponseEntity<ObjetoGenericoResponse>(new ObjetoGenericoResponse(e.getMessage()),
 					HttpStatus.INTERNAL_SERVER_ERROR);

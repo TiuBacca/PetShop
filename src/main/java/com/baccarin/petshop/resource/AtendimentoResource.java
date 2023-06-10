@@ -18,31 +18,37 @@ import com.baccarin.petshop.vo.request.AtendimentoRequest;
 import com.baccarin.petshop.vo.response.AtendimentoResponse;
 import com.baccarin.petshop.vo.response.ObjetoGenericoResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("atendimento")
 @RequiredArgsConstructor
+@Api(tags = "Atendimento")
 public class AtendimentoResource {
 
 	private final AtendimentoService atendimentoService;
 
 	@GetMapping(path = "buscaLista")
-	public ResponseEntity<List<AtendimentoResponse>> buscarListaAtendimento(@RequestBody AtendimentoFiltro filtro) throws Exception {
+	@ApiOperation("Buscar lista de atendimentos")
+	public ResponseEntity<List<AtendimentoResponse>> buscarListaAtendimento(@RequestBody AtendimentoFiltro filtro)
+			throws Exception {
 		List<AtendimentoResponse> atendimentos = atendimentoService.buscarListaAtendimento(filtro);
 		if (Objects.nonNull(atendimentos)) {
 			return new ResponseEntity<List<AtendimentoResponse>>(atendimentos, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@PostMapping(path = "salvar")
+    @ApiOperation("Salvar atendimento")
 	public ResponseEntity<ObjetoGenericoResponse> salvarAtendimento(@RequestBody AtendimentoRequest request) {
 		try {
 
 			atendimentoService.salvarAtendimento(request);
-			return new ResponseEntity<ObjetoGenericoResponse>(new ObjetoGenericoResponse("Atendimento salvo com sucesso."),
-					HttpStatus.OK);
+			return new ResponseEntity<ObjetoGenericoResponse>(
+					new ObjetoGenericoResponse("Atendimento salvo com sucesso."), HttpStatus.OK);
 		} catch (RegistroIncompletoException e) {
 			return new ResponseEntity<ObjetoGenericoResponse>(new ObjetoGenericoResponse(e.getMessage()),
 					HttpStatus.INTERNAL_SERVER_ERROR);

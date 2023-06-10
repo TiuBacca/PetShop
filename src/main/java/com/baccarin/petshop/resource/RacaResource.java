@@ -12,16 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baccarin.petshop.service.RacaService;
 import com.baccarin.petshop.vo.response.RacaResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("raca")
 @RequiredArgsConstructor
+@Api(tags = "Raça")
 public class RacaResource {
 
 	private final RacaService racaService;
 
 	@GetMapping(path = "buscaLista")
+	@ApiOperation("Buscar lista de raças")
 	public ResponseEntity<List<RacaResponse>> buscaListaRacas() throws Exception {
 		List<RacaResponse> racas = racaService.buscaListaRacas();
 		if (Objects.nonNull(racas)) {

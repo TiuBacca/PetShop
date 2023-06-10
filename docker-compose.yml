@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  petshop-backend:
+    build:
+      context: .
+    container_name: petshop-backed
+    deploy:
+      resources:
+        limits:
+          memory: ${V_LIMITE_MEMORIA_CONTAINER}M
+        reservations:
+          memory: 800M
+    ports:
+      - '${V_PORT}:${V_PORT}'
+    environment:
+      - PORT=${V_PORT}
+      - LOGGING_LEVEL=${V_LOGGING_LEVEL}
+      - POSTGRES_URL=${V_POSTGRES_URL}
+      - POSTGRESQL_USER=${V_POSTGRESQL_USER}
+      - POSTGRESQL_PASSWORD=${V_POSTGRESQL_PASSWORD}         
