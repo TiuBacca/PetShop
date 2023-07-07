@@ -1,0 +1,7 @@
+version: '2.1'
+
+services:
+  controle-horas-front-end:
+    image: dockersabium.azurecr.io/web/img-controle-horas-front-end:1.5
+    ports:
+      - 8055:80

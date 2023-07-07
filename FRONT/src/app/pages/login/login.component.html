@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+</head>
+
+<body>
+
+  <main>
+    <div class="container">
+
+      <section class="min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <span class="d-none d-lg-block" style=" font-size: 50px;">Mukis PetShop</span>
+                </a>
+              </div>
+
+              <div class="card mb-3" style="background-color: rgba(255, 255, 255, 0.5);">
+                <div class="card-body"  >
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Validar e-mail</h5>
+                    <p class="text-center small">Insira seu e-mail e clique em validar.</p>
+                  </div>
+
+                  <form class="row g-3 needs-validation">
+                    <div class="col-12">
+
+                      <label for="floatingSelect">E-mail</label>
+                      <div class="input-group">
+                        <input style="background-color: rgba(255, 255, 255, 0.5);" type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                          #email="ngModel" name="email" [(ngModel)]="data.email" required>
+                      </div>
+
+                      <label for="floatingSelect">Senha</label>
+                      <div class="input-group">
+                        <input style="background-color: rgba(255, 255, 255, 0.5);" type="password" class="form-control"
+                          #senha="ngModel" name="senha" [(ngModel)]="data.senha" required>
+                      </div>
+
+                      <p class="err" *ngIf="email.invalid && email.touched ">
+                        Insira um e-mail válido.
+                      </p>
+                    </div>
+
+                    <div class="col-12">
+                    </div>
+
+                    <div class="col-12">
+                      <button class="btn btn-primary custom-button w-100" type="button" (click)="acessarSistema(data)"
+                        [disabled]="!email.valid">Acessar</button>
+                    </div>
+                    
+
+                    <div class="pt-4 pb-2">
+                      <p class="text-center small"><a href="javascript:void(0)" (click)="recuperarSenha()" >Esqueceu a
+                          senha?</a></p>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+              <div class="credits">
+
+                By <a target="_blank">Guilherme Baccarin</a>
+
+
+              </div>
+              <p class="text-center small">Versão 1.00</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

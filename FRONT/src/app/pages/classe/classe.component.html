@@ -1,0 +1,184 @@
+<app-header></app-header>
+<app-nav></app-nav>
+
+<main id="main" class="main">
+  <section>
+    <div class="espaco"></div>
+    <form class="row g-12 needs-validation">
+
+      <h3> Classes </h3>
+
+      <div class="col-md-3">
+        <div class="col" style="min-width: 250px; max-width: 1250px;">
+          <label>Nome / Descrição</label>
+          <input type="text" class="form-control" [(ngModel)]="filtroNome" name="filtroNome">
+        </div>
+      </div>
+
+    </form>
+
+    <div class="col-md-3 mt" style="white-space: nowrap;">
+      <label for="floatingSelect">&nbsp;&nbsp;</label>
+      <div class="mb-3">
+
+        <button type="button" id="botaoNovaClasse" class="btn btn-secondary" (click)="abrirModalNovaClasse()"><i
+            class="bi bi-person-plus-fill"></i>&nbsp;Novo</button>
+        <label for="floatingSelect">&nbsp;&nbsp;</label>
+
+
+        <button type="button" id="botaoFiltrar" (click)="executarPesquisaByFiltro()" class="btn btn-primary"><i
+            class="bi bi-search"></i>&nbsp;Filtrar</button>
+
+        <label for="floatingSelect">&nbsp;&nbsp;</label>
+        <button type="button" id="botaoLimpar" class="btn btn-secondary" (click)="limparFiltros()"><i
+            class="bi bi-brush"></i>&nbsp;Limpar</button>
+      </div>
+    </div>
+
+    <div class="espacoGrande"></div>
+
+
+    <table class="table table-bordered" id="excel-table">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align: center">Nome</th>
+          <th scope="col" style="text-align: center">Descrição</th>
+          <th scope="col" style="text-align: center">Pontos base ataque</th>
+          <th scope="col" style="text-align: center">Pontos base vida</th>
+          <th scope="col" style="text-align: center">Açoes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let classe of listaClasse  | paginate: {itemsPerPage: 10, currentPage: paginaInicial, id:'2' }; let i = index">
+          <td style="text-align: center">{{classe.nome}}</td>
+          <td style="text-align: center">{{classe.descricao}}</td>
+          <td style="text-align: center">{{classe.pontosBaseAtaque}}</td>
+          <td style="text-align: center">{{classe.pontosBaseVida}}</td>
+
+          <td
+            style="min-width: 100px !important; max-width: 100px !important; text-align: center; white-space: nowrap; cursor: pointer;">
+
+            <a title="Editar" (click)="editarClasse(classe)">
+              <i class="bi bi-pencil-fill" style="font-size: 25px;  margin-right: 15px"></i>
+            </a>
+
+            <a title="Habilidades" (click)="listarHabilidades(classe)">
+              <img class="icone" src="assets/img/icone/habilidade.png" alt="Ícone">
+            </a>
+
+            <a title="Excluir" (click)="removerClasse(classe)">
+              <i class="bi bi-trash-fill" style="font-size: 25px; margin-right: 15px"></i>
+            </a>
+
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="paginaInicial = $event" previousLabel="Anterior" nextLabel="Próxima" id="2">
+    </pagination-controls>
+
+  </section>
+
+
+</main>
+
+
+<!--Modal nova classe -->
+<div class="modal fade modalCriarFundo" id="modalNovaClasse" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2> Classe </h2>
+        <a type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal" aria-label="Close"
+          (click)="fecharModalHabilidades()"></a>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="espaco"></div>
+        <form class="row g-6 needs-validation" #form="ngForm" (ngSubmit)="salvarNovaClasse()">
+          <div class="col-md-6">
+            <div class="col" style="min-width: 250px; max-width: 1250px;">
+              <label>Nome</label>
+              <input type="text" class="form-control" [(ngModel)]="classeEdicao.nome" name="nome" required
+                (ngModelChange)="verificarCamposPreenchidos()">
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="col">
+              <label>Pontos base ataque</label>
+              <input type="number" class="form-control" [(ngModel)]="classeEdicao.pontosBaseAtaque" name="ataque">
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="col">
+              <label>Pontos base vida</label>
+              <input type="number" class="form-control" [(ngModel)]="classeEdicao.pontosBaseVida" name="vida">
+            </div>
+          </div>
+
+          <div class="col-md-10">
+            <div class="col" style="min-width: 250px; min-height: 150px; max-width: 1250px;">
+              <label>Descrição</label>
+              <textarea class="form-control" [(ngModel)]="classeEdicao.descricao" name="descricao" required
+                (ngModelChange)="verificarCamposPreenchidos()"></textarea>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="salvarNovaClasse()"
+          [disabled]="!camposPreenchidos">Salvar</button>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="fecharModalNovaClasse()">Cancelar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal novo usuario FIM-->
+
+
+<!--Modal listar habilidades -->
+<div class="modal fade modalCriarFundo" id="modalHabilidades" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2> Habilidades</h2>
+        <a type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal" aria-label="Close"
+          (click)="fecharModalHabilidades()"></a>
+      </div>
+      <table class="table table-bordered" id="excel-table">
+
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center">Nome</th>
+            <th scope="col" style="text-align: center">Descrição</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let habilidade of listaHabilidades  | paginate: {itemsPerPage: 10, currentPage: paginaInicialHabilidades, id:'2' }; let i = index">
+            <td style="text-align: center">{{habilidade.nome}}</td>
+            <td style="text-align: center">{{habilidade.descricao}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="paginaInicialHabilidades = $event" previousLabel="Anterior" nextLabel="Próxima"
+        id="2">
+      </pagination-controls>
+
+    </div>
+  </div>
+</div>
+<!--Modal listar personagens FIM-->

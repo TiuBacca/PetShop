@@ -1,0 +1,37 @@
+<app-header></app-header>
+<app-nav></app-nav>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <div class="espaco"></div>
+    </div>
+
+
+    <section class="section">
+        <div class="col-lg-12">
+            <div class="row">
+                <ul class="cbp_tmtimeline">
+                    <li *ngFor="let retorno of listaPersonagens" class="click" (click)="atalho(retorno)">
+                        <div class="cbp_tmicon bg-green"> <i class="bi bi-person"></i></div>
+                        <div class="cbp_tmlabel custom-item tam ">
+                            <h2><b>Nome:</b> {{retorno.nome}}</h2>
+                            <h2><b>Classe:</b> {{retorno.classe.nome}}</h2>
+                            <h2><b>Raça:</b> {{retorno.raca.nome}}</h2>
+                            <h2><b>Nivel:</b> {{retorno.nivel}}</h2>
+                            <div class="progress-wrapper">
+                                <h2><b>Vida Atual: </b></h2>
+                                <div class="progress-bar-container">
+                                    <progress class="custom-progress" [style.background]="getProgressBarColor(retorno)"
+                                        [value]="retorno.vidaAtual" [max]="retorno.vidaTotal"></progress>
+                                    <span class="progress-text">{{ retorno.vidaAtual }} / {{ retorno.vidaTotal }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</main>

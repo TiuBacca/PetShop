@@ -1,0 +1,130 @@
+.espaco {
+    padding: 10px;
+}
+
+.espacoGrande {
+    padding: 30px;
+}
+
+
+.main {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    
+}
+
+.main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('src\assets\img\personagens\fundo4.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+    font-weight: bold;
+    background-size: 100% 100%;
+
+}
+
+.th {
+    min-width: 20% !important;
+    max-width: 25% !important;
+    text-align: center;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.td {
+    font-size: 25px;
+    text-align: center;
+    min-width: 20% !important;
+    max-width: 25% !important;
+    opacity: 1;
+}
+
+.btn-close-custom {
+    font-size: 35px; /* Defina o tamanho do ícone desejado */
+  }
+
+.icone:hover {
+    size: 10px;
+    margin-top: -10px;
+}
+
+.icone:hover::after {
+    content: "Mensagem em evidência";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 999;
+  }
+
+.icone {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+
+.iconeModalArmas:hover {
+    size: 10px;
+    margin-top: -10px;
+}
+
+.iconeModalArmas:hover::after {
+    content: "Mensagem em evidência";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 999;
+  }
+
+.iconeModalArmas {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .progress-value {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: white;
+  }
+
+

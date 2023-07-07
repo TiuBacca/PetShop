@@ -1,0 +1,32 @@
+
+.ajusteTamFonte {
+  font-size: 0.95em;
+  white-space: nowrap;
+  color: rgb(109, 37, 37);
+
+}
+
+i.bi.bi-list.toggle-sidebar-btn {
+  color: rgb(109, 37, 37);
+}
+
+.perm {
+  padding: 40px 1em 0 1em;
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.header{
+  background-image: url("/assets/img/header/logo.jpg");
+  background-size: 10%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 80px;
+}
+
+
+@media only screen and (max-width: 480px) {
+  #x {
+    display: none !important;
+  }
+}
